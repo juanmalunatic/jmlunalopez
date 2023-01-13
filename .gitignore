@@ -40,7 +40,7 @@
 /wp-content/themes/*
 # Don't ignore my theme
 !/wp-content/themes/neve
-!/wp-content/themes/neve-3.4.9
+!/wp-content/themes/neve-child
 
 
 # Example plugin
