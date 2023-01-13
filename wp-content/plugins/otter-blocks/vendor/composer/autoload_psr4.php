@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'tubalmartin\\CssMin\\' => array($vendorDir . '/tubalmartin/cssmin/src'),
+    'Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
     'Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
     'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
 );
