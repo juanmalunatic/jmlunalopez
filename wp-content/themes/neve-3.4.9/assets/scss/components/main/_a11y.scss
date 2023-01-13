@@ -1,0 +1,25 @@
+.show-on-focus {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	top: 32px;
+	background: var(--nv-site-bg);
+	padding: $spacing-xs $spacing-sm;
+
+	&:focus {
+		z-index: 999999;
+		width: auto;
+		height: auto;
+		clip: auto;
+	}
+}
+
+.screen-reader-text {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}

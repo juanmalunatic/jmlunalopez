@@ -1,0 +1,156 @@
+@import "../../main/variables";
+
+%show-dropdown {
+	opacity: 1;
+	visibility: visible;
+}
+
+.caret {
+	transition: 0.3s ease;
+}
+
+.dd-title {
+	flex-grow: var(--flexg);
+	display: flex;
+	align-items: center;
+}
+
+
+// === Desktop menu === //
+.nav-ul {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: calc(var(--spacing) / 2 * -1);
+	margin-left: calc(var(--spacing) / 2 * -1);
+
+	li > a {
+		display: flex;
+		align-items: center;
+		min-height: var(--height);
+		color: var(--color);
+		position: relative;
+	}
+
+	a:hover {
+		color: var(--hovercolor);
+	}
+
+	> li {
+		margin: 0 calc(var(--spacing) / 2);
+	}
+
+	li {
+		display: block;
+		position: relative;
+
+		&.current-menu-item > a:not([href*="#"]) {
+			color: var(--activecolor);
+		}
+
+		&:hover > .sub-menu,
+		&:focus-within > .sub-menu {
+
+			@extend %show-dropdown;
+		}
+	}
+
+	.caret {
+		display: flex;
+		justify-content: center;
+
+		svg {
+			fill: currentColor;
+			width: 0.5em;
+			height: 0.5em;
+		}
+	}
+
+	.sub-menu {
+		background: var(--bgcolor, var(--overlaycolor));
+		z-index: 100;
+		position: absolute;
+		top: 100%;
+		box-shadow: $soft-box-shadow;
+		visibility: hidden;
+		opacity: 0;
+		right: 0;
+
+		li {
+			min-width: 150px;
+		}
+
+		li > a {
+			padding: $spacing-xs $spacing-md;
+			white-space: nowrap;
+			display: flex;
+		}
+
+		.sub-menu {
+			left: 100%;
+			top: 0;
+			right: unset;
+		}
+	}
+}
+
+.sub-menu.dropdown-open {
+
+	@extend %show-dropdown;
+}
+
+// === Inside Sidebar === //
+.header-menu-sidebar {
+
+	.nv-nav-wrap {
+		width: 100%;
+	}
+
+	.nav-ul {
+		flex-direction: column;
+		width: 100%;
+
+		li {
+			width: 100%;
+		}
+
+		li:not([class*="block"]) > a {
+			padding: $spacing-sm 0;
+			white-space: unset;
+		}
+
+		.caret svg {
+			width: 1em;
+			height: 1em;
+		}
+
+		.caret-wrap {
+			margin: -15px 0;
+			padding: 15px;
+
+			&.dropdown-open .caret {
+				transform: rotateX(180deg);
+			}
+
+		}
+
+		.sub-menu {
+			// Important because of the different open behaviours of the sidebar.
+			left: unset !important;
+			top: unset !important;
+			right: unset !important;
+			background: 0;
+			position: relative;
+			max-width: 100%;
+			box-shadow: none;
+			display: none;
+
+			//Expanded by default vs desktop.
+			@extend %show-dropdown;
+
+			&.dropdown-open {
+				display: block;
+				margin-left: 10px;
+			}
+		}
+	}
+}

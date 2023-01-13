@@ -1,0 +1,51 @@
+.site-header {
+  position: relative;
+}
+
+.builder-item {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+$desktop: map-get($gl-devices-list, desktop);
+@media #{$desktop}{
+  .builder-item {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+//<editor-fold desc="Row Layout">
+$builder_types: page_header header footer;
+
+@each $type in $builder_types {
+  .#{$type}--row {
+    .#{$type}--row-inner,
+    .#{$type}--row-inner .container .row {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    &.layout-fullwidth {
+      .#{$type}--row-inner .container {
+        max-width: 100% !important;
+      }
+    }
+
+    &.layout-contained {
+      max-width: $container_width;
+      margin: 0 auto;
+    }
+  }
+}
+
+//</editor-fold>
+
+//<editor-fold desc="Row Styles">
+.hfg_header.site-header {
+  -webkit-box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+}
+//</editor-fold>

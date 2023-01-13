@@ -1,0 +1,20 @@
+//List fixes
+.elementor-widget-text-editor {
+	--listpad: #{$spacing-sm};
+	--liststyle: disc;
+}
+
+// Fix scroll snap
+body.elementor-page {
+
+	.wrapper {
+		overflow: visible;
+	}
+}
+
+.elementor {
+
+	select {
+		background-image: none;
+	}
+}

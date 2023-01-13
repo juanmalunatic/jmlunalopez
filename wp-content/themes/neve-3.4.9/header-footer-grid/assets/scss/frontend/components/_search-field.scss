@@ -1,0 +1,18 @@
+// Fixes the layout issue on canvas display, elements should not have height forced to 100%
+.container.responsive-search, .row {
+  height: inherit;
+}
+
+.search-field {
+  line-height: 1;
+  flex-grow: 1;
+
+  input[type=submit]:hover {
+	background-color: transparent;
+  }
+
+  .widget-search {
+	width: 100%;
+  }
+}
+

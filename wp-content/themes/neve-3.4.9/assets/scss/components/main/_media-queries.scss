@@ -1,0 +1,17 @@
+@media (min-width: #{$tablet}) {
+
+	@include comments--tablet();
+}
+
+@media (min-width: #{$laptop}) {
+
+	@include content--laptop();
+	@include blog-layout-default-alt--laptop();
+	@include sidebar--laptop();
+	@include gutenberg--laptop();
+}
+
+//@media (min-width: #{$tablet-sm}) {
+//}
+//@media (min-width: #{$desktop}) {
+//}
