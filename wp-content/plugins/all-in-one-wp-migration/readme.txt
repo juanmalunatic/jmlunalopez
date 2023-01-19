@@ -4,7 +4,7 @@ Tags: move, transfer, copy, migrate, backup, clone, restore, db migration, wordp
 Requires at least: 3.3
 Tested up to: 6.1
 Requires PHP: 5.3
-Stable tag: 7.69
+Stable tag: 7.70
 License: GPLv2 or later
 
 Move, transfer, copy, migrate, and backup a site with 1-click. Quick, easy, and reliable.
@@ -45,8 +45,7 @@ Here are other reasons to use All-in-One WP Migration ...
 
 **Trusted by the Government and Big Corporations:**
 
-Many enterprise customers, government organizations, and universities use,
-love, and trust All-in-One WP Migration. Here are some: Boeing, NASA, VW, IBM, Harvard University, Stanford University, Lego, P&G, Automattic, State of California, State of Hawaii.
+Many enterprise customers, government organizations, and universities use, love, and trust All-in-One WP Migration. Here are some: Boeing, NASA, VW, IBM, Harvard University, Stanford University, Lego, P&G, Automattic, State of California, State of Hawaii.
 This broad adoption and usage of All-in-One WP Migration demonstrate how **safe, reliable and adaptable** the plugin is for just about any website migration need.
 
 **Full Compatibility and Support:**
@@ -89,6 +88,11 @@ All-in-One WP Migration is in full compliance with General Data Protection Regul
 See our [GDPR Compliant Privacy Policy here](https://www.iubenda.com/privacy-policy/946881).
 
 == Changelog ==
+= 7.70 =
+**Added**
+
+* Hooks that allow excluding specific database tables on export
+
 = 7.69 =
 **Added**
 
