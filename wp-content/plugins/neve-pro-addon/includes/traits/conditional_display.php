@@ -120,7 +120,6 @@ trait Conditional_Display {
 	 */
 	public function check_conditions( $custom_layout_id ) {
 		$condition_groups = json_decode( get_post_meta( $custom_layout_id, Layouts_Metabox::META_CONDITIONAL, true ), true );
-
 		return $this->check_conditions_groups( $condition_groups );
 	}
 
@@ -196,9 +195,10 @@ trait Conditional_Display {
 
 		$post_id = null;
 		global $post;
-		if ( isset( $post->ID ) ) {
+		if ( isset( $post->ID ) && ! is_search() ) {
 			$post_id = (string) $post->ID;
 		}
+
 		if ( ! is_array( $condition ) || empty( $condition ) ) {
 			return true;
 		}
@@ -224,7 +224,7 @@ trait Conditional_Display {
 				$evaluated = apply_filters( 'neve_custom_layout_evaluated_condition_page', $evaluated, $post_id, $condition );
 				break;
 			case 'page_template':
-				$evaluated = get_page_template_slug() === $condition['end'];
+				$evaluated = ! ( $post_id === null ) && get_page_template_slug( (int) $post_id ) === $condition['end'];
 				break;
 			case 'page_parent':
 				$evaluated = is_page() && wp_get_post_parent_id( $post ) === (int) $condition['end'];

@@ -87,6 +87,10 @@ class Single_Product extends Base_View {
 	 * @return void
 	 */
 	public function init() {
+		// Render the Sticky add to cart [Note: these are should be above of the "neve_pro_run_wc_view" to support sticky add to cart in the custom Elementor single product template]
+		add_action( 'woocommerce_before_add_to_cart_button', array( $this, 'sticky_add_to_cart_before' ), -100 );
+		add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'sticky_add_to_cart_after' ), 100 );
+
 		if ( ! apply_filters( 'neve_pro_run_wc_view', true, self::class ) ) {
 			return;
 		}
@@ -96,8 +100,6 @@ class Single_Product extends Base_View {
 		 * Having this function with a lower or equal priority than 11 will make the toggle of breadcrumbs not working anymore.
 		 */
 		add_action( 'wp', array( $this, 'run' ), 12 );
-		add_action( 'woocommerce_before_add_to_cart_button', array( $this, 'sticky_add_to_cart_before' ), -100 );
-		add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'sticky_add_to_cart_after' ), 100 );
 	}
 
 	/**

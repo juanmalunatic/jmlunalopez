@@ -12,6 +12,7 @@
 namespace Neve_Pro\Core;
 
 use Neve_Pro\Traits\Core;
+use Neve\Admin\Dashboard\Plugin_Helper;
 
 /**
  * Class Abstract_Module
@@ -78,6 +79,22 @@ abstract class Abstract_Module implements Module_Interface {
 	 * @var array
 	 */
 	public $dependent_plugins = array();
+
+	/**
+	 * Allow manage plugins in Neve Dashboard -> module panel.
+	 * That allows activate/install plugins which listed in $this->dependent_plugins.
+	 *
+	 * @var bool
+	 */
+	public $manageable_plugins = false;
+
+	/**
+	 * Button Labels of Manageable Plugins
+	 *
+	 * @var array
+	 */
+	public $manageable_plugins_labels = [];
+
 	/**
 	 * Type of license.
 	 *
@@ -356,7 +373,44 @@ abstract class Abstract_Module implements Module_Interface {
 			$info[ $this->slug ]['documentation'] = $this->documentation;
 		}
 
+		if ( $this->manageable_plugins ) {
+			$info[ $this->slug ]['manageableDependentPlugins'] = true;
+			$info[ $this->slug ]['manageablePluginsLabels']    = $this->markup_manageable_plugin_labels( $this->manageable_plugins_labels, $this->dependent_plugins );
+			$info[ $this->slug ]['dependentPlugins']           = [];
+
+			foreach ( $this->dependent_plugins as $plugin_slug => $plugin_info ) {
+				$info[ $this->slug ]['dependentPlugins'][] = [
+					'name'           => $plugin_info['name'],
+					'slug'           => $plugin_slug,
+					'pluginBasename' => $plugin_info['path'],
+					'pluginState'    => ( new Plugin_Helper() )->get_plugin_state( $plugin_slug ),
+					'activateURL'    => ( new Plugin_Helper() )->get_plugin_action_link( $plugin_slug ),
+					'description'    => '',
+				];
+			}
+		} else {
+			$info[ $this->slug ]['manageableDependentPlugins'] = false;
+		}
+
 		return $info;
+	}
+
+	/**
+	 * Inject Plugin names if there are.
+	 *
+	 * @return array
+	 */
+	private function markup_manageable_plugin_labels( $labels, $dependent_plugins ) {
+		$plugin_labels = [];
+
+		foreach ( $dependent_plugins as $slug => $plugin ) {
+			$plugin_labels[ $slug ] = [];
+			foreach ( $labels as $label_key => $label_value ) {
+				$plugin_labels[ $slug ][ $label_key ] = sprintf( $label_value, esc_html( $plugin['name'] ) );
+			}
+		}
+
+		return $plugin_labels;
 	}
 
 	/**

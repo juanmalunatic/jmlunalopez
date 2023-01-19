@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'codeinwp/neve-pro-addon',
-        'pretty_version' => '2.4.8',
-        'version' => '2.4.8.0',
+        'pretty_version' => '2.4.9',
+        'version' => '2.4.9.0',
         'reference' => NULL,
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -11,8 +11,8 @@
     ),
     'versions' => array(
         'codeinwp/neve-pro-addon' => array(
-            'pretty_version' => '2.4.8',
-            'version' => '2.4.8.0',
+            'pretty_version' => '2.4.9',
+            'version' => '2.4.9.0',
             'reference' => NULL,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
